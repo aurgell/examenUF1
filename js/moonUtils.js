@@ -58,11 +58,11 @@ function getMonthlyCorrection(month) {
     return -1;
   } else if (isNaN(month) || !Number.isInteger(month)) {
     return -1;
-  } else if (1 >= month && month <= 12) {
+  } else if (!(1 >= month && month <= 12)) {
     return -1;
   }
 
-  return correction.charAt(month - 1); //Must return the monthly correction
+  return parseInt(correction.charAt(month - 1)); //Must return the monthly correction
 }
 
 /*The formula of the Moon Age is as follow:
@@ -77,10 +77,12 @@ function getMoonAge(date) {
   let monthCorrection = getMonthlyCorrection(data.getMonth() + 1);
   let day = data.getDate();
   let moonAge = epact + monthCorrection + day;
+
   if (moonAge > 30) {
     return moonAge - 30;
+  } else {
+    return moonAge;
   }
-  return moonAge;
 }
 
 /*
