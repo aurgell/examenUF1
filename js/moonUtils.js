@@ -72,7 +72,15 @@ function getMonthlyCorrection(month) {
  *
  * This function returns the Moon Age of a given data*/
 function getMoonAge(date) {
-  return; //Must return the moon age
+  let data = new Date(date);
+  let epact = getEpact(data.getFullYear());
+  let monthCorrection = getMonthlyCorrection(data.getMonth() + 1);
+  let day = data.getDate();
+  let moonAge = epact + monthCorrection + day;
+  if (moonAge > 30) {
+    return moonAge - 30;
+  }
+  return moonAge;
 }
 
 /*
