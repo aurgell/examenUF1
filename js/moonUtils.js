@@ -97,4 +97,38 @@ function getMoonAge(date) {
  * Use a switch statement to return a string with the name of the
  * lunar phase corresponding to the moon age
  * */
-function getMoonPhase(age) {}
+function getMoonPhase(age) {
+  let response = "";
+
+  switch (true) {
+    case 0:
+      response = "New Moon";
+      break;
+    case isBetween(age, 1, 6):
+      response = "Waxing crescent";
+      break;
+    case 7:
+      response = "First Quarter";
+      break;
+    case isBetween(age, 8, 14):
+      response = "Waxing gibbous";
+      break;
+    case 15:
+      response = "Full Moon";
+      break;
+    case isBetween(age, 16, 21):
+      response = "Waning gibbous";
+      break;
+    case 22:
+      response = "Last quarter";
+      break;
+    case isBetween(age, 23, 29):
+      response = "Waning crescent";
+      break;
+  }
+  return response;
+}
+
+function isBetween(valor, min, max) {
+  return valor >= min && valor <= max;
+}
